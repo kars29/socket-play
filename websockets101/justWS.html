@@ -1,0 +1,15 @@
+<script>
+    const ws = new WebSocket('ws://localhost:8000');
+    console.log(ws);
+    
+
+    ws.onopen = (event) => {
+        console.log(event);
+        console.log('connection successful');
+    }
+
+    ws.onmessage = (event) => {
+        console.log(event);
+        ws.send("got your message")
+    }
+</script>

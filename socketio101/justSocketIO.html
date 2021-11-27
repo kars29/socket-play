@@ -1,0 +1,22 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.0/socket.io.js" integrity="sha512-nYuHvSAhY5lFZ4ixSViOwsEKFvlxHMU2NHts1ILuJgOS6ptUmAGt/0i5czIgMOahKZ6JN84YFDA+mCdky7dD8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const socket = io('http://localhost:8000');
+    console.log(socket);
+    
+
+    // ws.onopen = (event) => {
+    socket.on('connect', event => {
+        console.log(event);
+        console.log('connection successful');
+        socket.on('welcome', event => {
+            console.log("msg from server: ", event);
+            socket.emit('ackWelcome', "Glad to get connected!")
+        });
+    });
+
+    // ws.onmessage = (event) => {
+    //     console.log(event);
+    //     ws.send("got your message")
+    // }
+</script>
