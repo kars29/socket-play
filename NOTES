@@ -1,0 +1,53 @@
+Client side
+
+const socket = io('http://localhost:9000');  // connect to socket
+
+socket.on('connect', callback) // Run callback when conected to server
+
+
+
+
+socket.on('<event_name>', data => { }); // Run callback when server sends messssage with event event_name
+
+socket.emit('<event_name>', data); // Send event 
+
+const socket = io('http://localhost:9000${namespace_endpoint}'); // Eg: /wiki
+
+
+socket.emit('<event_name>', data' callback); // clients callback that  server needs to call 
+
+
+Serverside
+
+
+#Initialize the socket.io
+
+const express = require('express');
+const app = express();
+
+
+const socketio = require('socket.io');
+
+
+const expressserver = app.listen(9000);
+const io = socketio(expressserver);
+
+
+# listen to clients request
+
+io.on('connect', (socket) => {}); // Run the callback when a client connects to the socket. The client can be communited through socket vairable
+
+io.of(namespace_endpoint).on('connection', socket => { }) // run callback when client connets to a namespace eg. /wiki.
+
+io.on('<event_name>', (data, [callback]) => {
+    ..... use data .....
+
+    .... call callback which will be executed on client side.... 
+}) # like an eventlistener, 
+
+
+socket.rooms // arrays of rooms the client is in. First room is self room , second onwards other rooms
+
+socket.join(roomTOJoin)
+
+socket.leave(roomToLeave)
